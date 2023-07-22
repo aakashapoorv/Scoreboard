@@ -12,6 +12,16 @@ namespace ScoreboardApp
 
         public Match(string homeTeam, string awayTeam)
         {
+            if (string.IsNullOrWhiteSpace(homeTeam) || string.IsNullOrWhiteSpace(awayTeam))
+            {
+                throw new ArgumentException("Team names cannot be null or empty.");
+            }
+
+            if (homeTeam == awayTeam)
+            {
+                throw new ArgumentException("The home team and the away team cannot be the same.");
+            }
+            
             HomeTeam = homeTeam;
             AwayTeam = awayTeam;
             HomeScore = 0;
