@@ -32,5 +32,13 @@ namespace ScoreboardApp.Tests
             Assert.AreEqual(3, match.HomeScore);
             Assert.AreEqual(2, match.AwayScore);
         }
+
+        [Test]
+        public void FinishMatch_FinishMatch_RemovesMatchFromScoreboard()
+        {
+            var match = _scoreBoard.StartMatch("Team A", "Team B");
+            _scoreBoard.FinishMatch(match);
+            Assert.IsFalse(_scoreBoard.Matches.Contains(match));
+        }
     }
 }

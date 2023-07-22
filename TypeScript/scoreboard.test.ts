@@ -22,4 +22,10 @@ describe('ScoreBoard', () => {
     expect(match.homeScore).toEqual(3);
     expect(match.awayScore).toEqual(2);
   });
+
+  test('finish match', () => {
+    const match = scoreBoard.startMatch('Team A', 'Team B');
+    scoreBoard.finishMatch(match);
+    expect(scoreBoard.matches).not.toContain(match);
+  });
 });
