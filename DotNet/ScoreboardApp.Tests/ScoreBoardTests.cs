@@ -120,5 +120,21 @@ namespace ScoreboardApp.Tests
             Assert.Throws<ArgumentException>(() => match.UpdateScore(2, 2));
             Assert.Throws<ArgumentException>(() => match.UpdateScore(3, 1));
         }
+
+        [Test]
+        public void UpdateScore_AfterMatchEnds_ThrowsException()
+        {
+            var match = new Match("Team A", "Team B");
+            match.EndMatch();
+            Assert.Throws<InvalidOperationException>(() => match.UpdateScore(2, 2));
+        }
+
+        [Test]
+        public void UpdateScore_AfterMatchEnds_ThrowsException()
+        {
+            var match = new Match("Team A", "Team B");
+            match.EndMatch();
+            Assert.Throws<InvalidOperationException>(() => match.UpdateScore(2, 2));
+        }
     }
 }

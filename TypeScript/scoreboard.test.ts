@@ -89,9 +89,15 @@ describe('ScoreBoard', () => {
   });
 
   test('update score lower than previous', () => {
-      const match = new Match('Team A', 'Team B');
-      match.updateScore(3, 2);
-      expect(() => match.updateScore(2, 2)).toThrowError("New score must not be lower than the previous score.");
-      expect(() => match.updateScore(3, 1)).toThrowError("New score must not be lower than the previous score.");
+    const match = new Match('Team A', 'Team B');
+    match.updateScore(3, 2);
+    expect(() => match.updateScore(2, 2)).toThrowError("New score must not be lower than the previous score.");
+    expect(() => match.updateScore(3, 1)).toThrowError("New score must not be lower than the previous score.");
+  });
+
+  test('update score after match ends', () => {
+    const match = new Match('Team A', 'Team B');
+    match.endMatch();
+    expect(() => match.updateScore(2, 2)).toThrowError("Cannot update score after the match has ended.");
   });
 });
