@@ -13,6 +13,7 @@ export class ScoreBoard {
     }
 
     finishMatch(match: Match): void {
+        match.endMatch();
         const index = this.matches.indexOf(match);
         if (index > -1) {
             this.matches.splice(index, 1);

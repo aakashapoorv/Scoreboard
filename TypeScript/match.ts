@@ -4,6 +4,7 @@ export class Match {
     homeScore: number;
     awayScore: number;
     startTime: Date;
+    matchEnded: boolean;
 
     constructor(homeTeam: string, awayTeam: string) {
         if (!homeTeam || homeTeam.trim() === '') {
@@ -23,6 +24,11 @@ export class Match {
         this.homeScore = 0;
         this.awayScore = 0;
         this.startTime = new Date();
+        this.matchEnded = false;
+    }
+
+    endMatch(): void {
+        this.matchEnded = true;
     }
 
     updateScore(homeScore: number, awayScore: number): void {
@@ -32,6 +38,10 @@ export class Match {
     
         if(homeScore < this.homeScore || awayScore < this.awayScore) {
             throw new Error("New score must not be lower than the previous score.");
+        }
+ 
+        if (this.matchEnded) {
+            throw new Error("Cannot update score after the match has ended.");
         }
         
         this.homeScore = homeScore;

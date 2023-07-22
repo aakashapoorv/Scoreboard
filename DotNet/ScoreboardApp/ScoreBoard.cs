@@ -22,6 +22,7 @@ namespace ScoreboardApp
 
         public void FinishMatch(Match match)
         {
+            match.EndMatch();
             Matches.Remove(match);
         }
 

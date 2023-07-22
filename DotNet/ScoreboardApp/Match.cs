@@ -9,6 +9,7 @@ namespace ScoreboardApp
         public int HomeScore { get; set; }
         public int AwayScore { get; set; }
         public DateTime StartTime { get; set; }
+        public bool MatchEnded { get; private set; }
 
         public Match(string homeTeam, string awayTeam)
         {
@@ -27,20 +28,30 @@ namespace ScoreboardApp
             HomeScore = 0;
             AwayScore = 0;
             StartTime = DateTime.Now;
+            MatchEnded = false;
+        }
+
+        public void EndMatch()
+        {
+            MatchEnded = true;
         }
 
         public void UpdateScore(int homeScore, int awayScore)
         {
-            if(homeScore < 0 || awayScore < 0)
+            if (homeScore < 0 || awayScore < 0)
             {
                 throw new ArgumentException("Scores cannot be negative.");
             }
 
-            if(homeScore < HomeScore || awayScore < AwayScore)
+            if (homeScore < HomeScore || awayScore < AwayScore)
             {
                 throw new ArgumentException("New score must not be lower than the previous score.");
             }
 
+            if (MatchEnded)
+            {
+                throw new InvalidOperationException("Cannot update score after the match has ended.");
+            }
             HomeScore = homeScore;
             AwayScore = awayScore;
         }
