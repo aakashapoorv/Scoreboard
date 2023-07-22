@@ -61,5 +61,47 @@ namespace ScoreboardApp.Tests
             Assert.AreEqual(2, summary.Last().HomeScore);
             Assert.AreEqual(2, summary.Last().AwayScore);
         }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenHomeTeamAndAwayTeamAreTheSame()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("Team A", "Team A"));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenHomeTeamIsNull()
+        {
+            Assert.Throws<ArgumentException>(() => new Match(null, "Team B"));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenAwayTeamIsNull()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("Team A", null));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenHomeTeamIsEmpty()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("", "Team B"));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenAwayTeamIsEmpty()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("Team A", ""));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenHomeTeamIsWhitespace()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("  ", "Team B"));
+        }
+
+        [Test]
+        public void Constructor_ThrowsException_WhenAwayTeamIsWhitespace()
+        {
+            Assert.Throws<ArgumentException>(() => new Match("Team A", "  "));
+        }
     }
 }

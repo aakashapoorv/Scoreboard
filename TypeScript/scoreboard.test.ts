@@ -51,4 +51,32 @@ describe('ScoreBoard', () => {
       awayScore: 2
     });
   });
+
+  test('constructor throws error when homeTeam and awayTeam are the same', () => {
+    expect(() => new Match('Team A', 'Team A')).toThrowError();
+  });
+
+  test('constructor throws error when homeTeam is null', () => {
+    expect(() => new Match(null, 'Team B')).toThrowError();
+  });
+
+  test('constructor throws error when awayTeam is null', () => {
+    expect(() => new Match('Team A', null)).toThrowError();
+  });
+
+  test('constructor throws error when homeTeam is empty', () => {
+    expect(() => new Match('', 'Team B')).toThrowError();
+  });
+
+  test('constructor throws error when awayTeam is empty', () => {
+    expect(() => new Match('Team A', '')).toThrowError();
+  });
+
+  test('constructor throws error when homeTeam is whitespace', () => {
+    expect(() => new Match('  ', 'Team B')).toThrowError();
+  });
+
+  test('constructor throws error when awayTeam is whitespace', () => {
+    expect(() => new Match('Team A', '  ')).toThrowError();
+  });
 });
