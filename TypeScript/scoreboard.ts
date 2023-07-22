@@ -18,4 +18,15 @@ export class ScoreBoard {
             this.matches.splice(index, 1);
         }
     }
+
+    summary(): {homeTeam: string, awayTeam: string, homeScore: number, awayScore: number}[] {
+        // Sorting matches by total score and start time
+        const sortedMatches = this.matches.sort((a, b) => b.totalScore() - a.totalScore() || b.startTime.getTime() - a.startTime.getTime());
+        return sortedMatches.map(match => ({
+            homeTeam: match.homeTeam,
+            awayTeam: match.awayTeam,
+            homeScore: match.homeScore,
+            awayScore: match.awayScore
+        }));
+    }
 }

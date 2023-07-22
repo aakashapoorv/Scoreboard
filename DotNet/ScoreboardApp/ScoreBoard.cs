@@ -24,5 +24,13 @@ namespace ScoreboardApp
         {
             Matches.Remove(match);
         }
+
+        public List<Match> Summary()
+        {
+            return Matches
+                .OrderByDescending(match => match.TotalScore())
+                .ThenByDescending(match => match.StartTime)
+                .ToList();
+        }
     }
 }

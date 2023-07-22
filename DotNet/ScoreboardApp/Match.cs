@@ -18,11 +18,16 @@ namespace ScoreboardApp
             AwayScore = 0;
             StartTime = DateTime.Now;
         }
-        
+
         public void UpdateScore(int homeScore, int awayScore)
         {
             HomeScore = homeScore;
             AwayScore = awayScore;
+        }
+
+        public int TotalScore()
+        {
+            return HomeScore + AwayScore;
         }
     }
 }
