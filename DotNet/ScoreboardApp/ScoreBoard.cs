@@ -19,5 +19,10 @@ namespace ScoreboardApp
             Matches.Add(match);
             return match;
         }
+
+        public void FinishMatch(Match match)
+        {
+            Matches.Remove(match);
+        }
     }
 }
