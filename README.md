@@ -23,6 +23,9 @@ This application provides a simple score-tracking system for matches. The applic
 2. Write the minimum amount of code needed to make the test pass (Green)
 3. Refactor the code, if necessary, to improve the structure while maintaining the behavior (Refactor)
 
+[Commit History](https://github.com/aakashapoorv/Scoreboard/commits/main)
+
+
 ## Overview
 
 The application consists of two main classes:
@@ -217,6 +220,18 @@ Here is a UML class diagram illustrating the relationship:
 
 Please see the code for further implementation details.
 
+1. **Scalability**: If the number of matches or frequency of score updates is extremely high, we might need a more efficient way to store and retrieve match data.
+ 
+2. **Concurrency**: If multiple threads or processes are trying to update scores or retrieve match summaries at the same time, we would need to add synchronization to prevent data races or inconsistencies.
+  
+3. **Persistence**: Currently, all match data is lost when the program ends. If we needed to store match data across multiple runs of the program, we'd need a way to persist match data to a file, database, or other data store.
+  
+4. **Networking**: If we needed to update scores or retrieve summaries from a remote client, we'd need to add networking code and likely restructure our classes to fit a client-server model.
+
+5. **Error handling**: The code contains extensive error handling to account for a variety of edge cases. This includes checking for null or empty team names, ensuring that home and away teams are not the same, disallowing negative scores, preventing score updates after a match has ended, and handling situations where a match is started or ended multiple times. These checks ensure that the scoreboard operates correctly and robustly in a wide range of situations. This level of error handling is essential for any complex system, and has been integrated here in a way that does not obscure the main logic of the program.
+
+6. **Modularity and Extensibility**: If more features or complexity were anticipated, we might need a more modular design with more abstractions. For example, we might have an abstract `Match` class with different subclasses for different sports, or we could use interfaces to allow different types of score storage (in-memory, database, etc.).
+
 ## Edge cases
 
 1. **Null or Empty Team Names:** The names for the home and away teams must be provided, and they can't be null or empty.
@@ -268,20 +283,6 @@ Please see the code for further implementation details.
 7. **Error handling**: The code contains extensive error handling to account for a variety of edge cases. This includes checking for null or empty team names, ensuring that home and away teams are not the same, disallowing negative scores, preventing score updates after a match has ended, and handling situations where a match is started or ended multiple times. These checks ensure that the scoreboard operates correctly and robustly in a wide range of situations. This level of error handling is essential for any complex system, and has been integrated here in a way that does not obscure the main logic of the program.
 
 8. **No unnecessary classes or methods**: The code doesn't have any classes, methods, or variables that aren't needed.
-
-## Object-Oriented Design
-
-1. **Scalability**: If the number of matches or frequency of score updates is extremely high, we might need a more efficient way to store and retrieve match data.
- 
-2. **Concurrency**: If multiple threads or processes are trying to update scores or retrieve match summaries at the same time, we would need to add synchronization to prevent data races or inconsistencies.
-  
-3. **Persistence**: Currently, all match data is lost when the program ends. If we needed to store match data across multiple runs of the program, we'd need a way to persist match data to a file, database, or other data store.
-  
-4. **Networking**: If we needed to update scores or retrieve summaries from a remote client, we'd need to add networking code and likely restructure our classes to fit a client-server model.
-
-5. **Error handling**: The code contains extensive error handling to account for a variety of edge cases. This includes checking for null or empty team names, ensuring that home and away teams are not the same, disallowing negative scores, preventing score updates after a match has ended, and handling situations where a match is started or ended multiple times. These checks ensure that the scoreboard operates correctly and robustly in a wide range of situations. This level of error handling is essential for any complex system, and has been integrated here in a way that does not obscure the main logic of the program.
-
-6. **Modularity and Extensibility**: If more features or complexity were anticipated, we might need a more modular design with more abstractions. For example, we might have an abstract `Match` class with different subclasses for different sports, or we could use interfaces to allow different types of score storage (in-memory, database, etc.).
 
 ## Built With
 
