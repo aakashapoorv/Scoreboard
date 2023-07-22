@@ -21,7 +21,7 @@ namespace ScoreboardApp
             {
                 throw new ArgumentException("The home team and the away team cannot be the same.");
             }
-            
+
             HomeTeam = homeTeam;
             AwayTeam = awayTeam;
             HomeScore = 0;
@@ -31,6 +31,16 @@ namespace ScoreboardApp
 
         public void UpdateScore(int homeScore, int awayScore)
         {
+            if(homeScore < 0 || awayScore < 0)
+            {
+                throw new ArgumentException("Scores cannot be negative.");
+            }
+
+            if(homeScore < HomeScore || awayScore < AwayScore)
+            {
+                throw new ArgumentException("New score must not be lower than the previous score.");
+            }
+
             HomeScore = homeScore;
             AwayScore = awayScore;
         }

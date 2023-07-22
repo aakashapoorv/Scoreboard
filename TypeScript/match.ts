@@ -17,7 +17,7 @@ export class Match {
         if (homeTeam === awayTeam) {
             throw new Error('homeTeam and awayTeam cannot be the same');
         }
-        
+
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = 0;
@@ -26,6 +26,14 @@ export class Match {
     }
 
     updateScore(homeScore: number, awayScore: number): void {
+        if(homeScore < 0 || awayScore < 0) {
+            throw new Error("Scores cannot be negative.");
+        }
+    
+        if(homeScore < this.homeScore || awayScore < this.awayScore) {
+            throw new Error("New score must not be lower than the previous score.");
+        }
+        
         this.homeScore = homeScore;
         this.awayScore = awayScore;
     }
