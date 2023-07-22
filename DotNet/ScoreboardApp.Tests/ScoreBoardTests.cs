@@ -23,5 +23,14 @@ namespace ScoreboardApp.Tests
             Assert.AreEqual(0, match.HomeScore);
             Assert.AreEqual(0, match.AwayScore);
         }
+
+        [Test]
+        public void UpdateScore_UpdateScore_ReturnsUpdatedScore()
+        {
+            var match = new Match("Team A", "Team B");
+            match.UpdateScore(3, 2);
+            Assert.AreEqual(3, match.HomeScore);
+            Assert.AreEqual(2, match.AwayScore);
+        }
     }
 }

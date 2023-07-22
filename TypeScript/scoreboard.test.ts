@@ -15,4 +15,11 @@ describe('ScoreBoard', () => {
     expect(match.homeScore).toEqual(0);
     expect(match.awayScore).toEqual(0);
   });
+
+  test('update score', () => {
+    const match = new Match('Team A', 'Team B');
+    match.updateScore(3, 2);
+    expect(match.homeScore).toEqual(3);
+    expect(match.awayScore).toEqual(2);
+  });
 });
