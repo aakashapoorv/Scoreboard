@@ -40,5 +40,26 @@ namespace ScoreboardApp.Tests
             _scoreBoard.FinishMatch(match);
             Assert.IsFalse(_scoreBoard.Matches.Contains(match));
         }
+
+        [Test]
+        public void Summary_ReturnsSortedSummary()
+        {
+            var match1 = _scoreBoard.StartMatch("Team A", "Team B");
+            var match2 = _scoreBoard.StartMatch("Team C", "Team D");
+            match1.UpdateScore(3, 2);
+            match2.UpdateScore(2, 2);
+
+            var summary = _scoreBoard.Summary();
+
+            Assert.AreEqual("Team A", summary.First().HomeTeam);
+            Assert.AreEqual("Team B", summary.First().AwayTeam);
+            Assert.AreEqual(3, summary.First().HomeScore);
+            Assert.AreEqual(2, summary.First().AwayScore);
+
+            Assert.AreEqual("Team C", summary.Last().HomeTeam);
+            Assert.AreEqual("Team D", summary.Last().AwayTeam);
+            Assert.AreEqual(2, summary.Last().HomeScore);
+            Assert.AreEqual(2, summary.Last().AwayScore);
+        }
     }
 }

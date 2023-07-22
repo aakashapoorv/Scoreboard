@@ -28,4 +28,27 @@ describe('ScoreBoard', () => {
     scoreBoard.finishMatch(match);
     expect(scoreBoard.matches).not.toContain(match);
   });
+
+  test('get a summary of matches', () => {
+    const match1 = scoreBoard.startMatch('Team A', 'Team B');
+    const match2 = scoreBoard.startMatch('Team C', 'Team D');
+    match1.updateScore(3, 2);
+    match2.updateScore(2, 2);
+
+    const summary = scoreBoard.summary();
+
+    expect(summary[0]).toEqual({
+      homeTeam: 'Team A',
+      awayTeam: 'Team B',
+      homeScore: 3,
+      awayScore: 2
+    });
+
+    expect(summary[1]).toEqual({
+      homeTeam: 'Team C',
+      awayTeam: 'Team D',
+      homeScore: 2,
+      awayScore: 2
+    });
+  });
 });
