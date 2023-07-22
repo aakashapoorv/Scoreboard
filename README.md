@@ -24,6 +24,31 @@ The application consists of two main classes:
 - `Match` class: Represents a match with home and away teams and their respective scores.
 - `Scoreboard` class: Manages the matches, allowing to start a match, finish a match, and get a summary of matches.
 
+## How to Test
+
+Please ensure that you have the necessary environments set up for TypeScript and .NET before running the tests (Node.js and npm for TypeScript, and .NET SDK for .NET).
+
+Here are the instructions to test the application for both TypeScript and .NET:
+
+### Testing TypeScript
+Navigate to the TypeScript directory and run the tests using npm:
+
+```bash
+cd TypeScript
+npm install
+npm run test
+npm run coverage
+```
+
+### Testing .NET (C#)
+Navigate to the .NET testing project directory and run the tests using the dotnet test command:
+
+```bash
+cd DotNet
+cd ScoreboardApp.Tests
+dotnet test
+```
+
 ## Usage Scenarios
 
 Here are some key scenarios that the Scoreboard application is designed to handle:
