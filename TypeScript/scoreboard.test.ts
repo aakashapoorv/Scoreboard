@@ -57,10 +57,12 @@ describe('ScoreBoard', () => {
   });
 
   test('constructor throws error when homeTeam is null', () => {
+    // @ts-ignore
     expect(() => new Match(null, 'Team B')).toThrowError();
   });
 
   test('constructor throws error when awayTeam is null', () => {
+    // @ts-ignore
     expect(() => new Match('Team A', null)).toThrowError();
   });
 
@@ -78,5 +80,18 @@ describe('ScoreBoard', () => {
 
   test('constructor throws error when awayTeam is whitespace', () => {
     expect(() => new Match('Team A', '  ')).toThrowError();
+  });
+
+  test('update score with negative values', () => {
+    const match = new Match('Team A', 'Team B');
+    expect(() => match.updateScore(-1, 2)).toThrowError("Scores cannot be negative.");
+    expect(() => match.updateScore(2, -1)).toThrowError("Scores cannot be negative.");
+  });
+
+  test('update score lower than previous', () => {
+      const match = new Match('Team A', 'Team B');
+      match.updateScore(3, 2);
+      expect(() => match.updateScore(2, 2)).toThrowError("New score must not be lower than the previous score.");
+      expect(() => match.updateScore(3, 1)).toThrowError("New score must not be lower than the previous score.");
   });
 });

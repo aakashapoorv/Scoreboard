@@ -103,5 +103,22 @@ namespace ScoreboardApp.Tests
         {
             Assert.Throws<ArgumentException>(() => new Match("Team A", "  "));
         }
+
+        [Test]
+        public void UpdateScore_NegativeScore_ThrowsException()
+        {
+            var match = new Match("Team A", "Team B");
+            Assert.Throws<ArgumentException>(() => match.UpdateScore(-1, 2));
+            Assert.Throws<ArgumentException>(() => match.UpdateScore(2, -1));
+        }
+
+        [Test]
+        public void UpdateScore_ScoreLowerThanPrevious_ThrowsException()
+        {
+            var match = new Match("Team A", "Team B");
+            match.UpdateScore(3, 2);
+            Assert.Throws<ArgumentException>(() => match.UpdateScore(2, 2));
+            Assert.Throws<ArgumentException>(() => match.UpdateScore(3, 1));
+        }
     }
 }
