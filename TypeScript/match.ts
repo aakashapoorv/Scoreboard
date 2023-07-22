@@ -12,4 +12,13 @@ export class Match {
         this.awayScore = 0;
         this.startTime = new Date();
     }
+
+    updateScore(homeScore: number, awayScore: number): void {
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+    }
+
+    totalScore(): number {
+        return this.homeScore + this.awayScore;
+    }
 }
