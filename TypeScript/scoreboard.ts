@@ -1,4 +1,4 @@
-import { Match } from './match'; 
+import { Match } from './match';
 export class ScoreBoard {
     matches: Match[];
 
@@ -20,7 +20,7 @@ export class ScoreBoard {
         }
     }
 
-    summary(): {homeTeam: string, awayTeam: string, homeScore: number, awayScore: number}[] {
+    summary(): { homeTeam: string, awayTeam: string, homeScore: number, awayScore: number }[] {
         // Sorting matches by total score and start time
         const sortedMatches = this.matches.sort((a, b) => b.totalScore() - a.totalScore() || b.startTime.getTime() - a.startTime.getTime());
         return sortedMatches.map(match => ({

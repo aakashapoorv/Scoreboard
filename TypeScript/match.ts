@@ -32,18 +32,18 @@ export class Match {
     }
 
     updateScore(homeScore: number, awayScore: number): void {
-        if(homeScore < 0 || awayScore < 0) {
+        if (homeScore < 0 || awayScore < 0) {
             throw new Error("Scores cannot be negative.");
         }
-    
-        if(homeScore < this.homeScore || awayScore < this.awayScore) {
+
+        if (homeScore < this.homeScore || awayScore < this.awayScore) {
             throw new Error("New score must not be lower than the previous score.");
         }
- 
+
         if (this.matchEnded) {
             throw new Error("Cannot update score after the match has ended.");
         }
-        
+
         this.homeScore = homeScore;
         this.awayScore = awayScore;
     }
